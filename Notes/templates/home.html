@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+    <h1>Welcome back, {{ current_user.username }}!</h1>
+    {% for note in notes %}
+        <div class="note">
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+            <a class="btn btn-primary" href="{{ url_for('edit_note', note_id=note.id) }}">Edit</a>
+            <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>Welcome to Notes!</h1>
+    <p>Please log in or register to access your notes.</p>
+{% endif %}
+
+{% endblock content %}

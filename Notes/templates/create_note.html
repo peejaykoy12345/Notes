@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}
+
+<form method="POST" action="">
+     {{ form.hidden_tag() }}
+    <div class="form-group">
+        <label for="title">Title</label>
+        {{ form.title.label(class="form-control-label") }}
+        {{ form.title(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.hidden_tag() }}
+        <label for="title">Title</label>
+        {{ form.content.label(class="form-control-label") }}
+        {{ form.content(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+{% endblock content %}
